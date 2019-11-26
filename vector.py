@@ -67,8 +67,13 @@ class Vector3D:
         else:
             return False
 
+    def dist(self, l):  # distance from point to line
+        return (l.getR() - self).cross(l.getA()).abs() / l.getA().abs()
+
 
 class Line:
+    # r - point on line
+    # a - direction vector
     def __init__(self, r, a):
         self.r = r
         if not a.isNull():
@@ -91,7 +96,7 @@ class Line:
     def getN(self):
         return Vector3D(-self.getA().y, self.getA().x)
 
-    def dist(self, other):
+    def dist(self, other):  # distance from line to line
         if not self.getA().isCollinear(other.getA()):
             return math.fabs((self.getR() - other.getR()).dot(self.getA().cross(other.getA()))
                              / self.getA().cross(other.getA()).abs())
