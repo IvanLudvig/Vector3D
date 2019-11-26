@@ -93,11 +93,9 @@ class Line:
 
     def dist(self, other):
         if not self.getA().isCollinear(other.getA()):
-            print('not collinear')
             return math.fabs((self.getR() - other.getR()).dot(self.getA().cross(other.getA()))
                              / self.getA().cross(other.getA()).abs())
         else:
-            print('collinear')
             return math.fabs((self.getR() - other.getR()).cross(self.getA()).abs() / self.getA().abs())
 
 
@@ -111,7 +109,7 @@ v3 = v1.cross(v2)
 l1 = Line(Vector3D(-4, -1, 4), v1)
 l2 = Line(Vector3D(5, 4, 1), v2)
 n = commonN(l1, l2)
-print(l1.dist(l2))
+print('distance: ', l1.dist(l2))
 origin = Vector3D(0, 0, 0)
 vectors = np.array([v1, v2, v3, n])
 lines = np.array([l1, l2])
